@@ -1,7 +1,8 @@
-// ToDo: Método para crear un ToDo como lo vimos en el Index.hsml
+// ToDo: Método para crear un ToDo como lo vimos en el Index.html
 
 import { Todo } from "../classes";
 import { todoList } from "../index.js";
+//? import const todoList = new TodoList(); desde index.js (raíz)
 
 //? Referencias al HTML:
 const divTodoList = document.querySelector('.todo-list');
@@ -34,13 +35,11 @@ txtInput.addEventListener('keyup', (event) => {
 
     if (event.keyCode === 13 && txtInput.value.length > 0) {
 
-        console.log(txtInput.value);
         const nuevoTodo = new Todo(txtInput.value);
         todoList.nuevoTodo(nuevoTodo);
+        //? todoList -> nuevoTodo [por referencia...]
 
-        console.log(todoList); //! Luego eliminar
-
-        //? Llamamos al método crearTodoHtml para agregarlo al HTML:
+        //? Llamamos al método crearTodoHtml de la faf (↑) para agregarlo al HTML, pasándole el nuevoTodo:
         crearTodoHtml(nuevoTodo);
 
         //? Limpiar el input:
