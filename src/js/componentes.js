@@ -7,6 +7,7 @@ import { todoList } from "../index.js";
 //? Referencias al HTML:
 const divTodoList = document.querySelector('.todo-list');
 const txtInput = document.querySelector('.new-todo');
+// const btnBorrarCompletados = querySelector('.clear-completed');
 
 export const crearTodoHtml = (todo) => {
     const htmlTodo = `
@@ -38,6 +39,7 @@ txtInput.addEventListener('keyup', (event) => {
         const nuevoTodo = new Todo(txtInput.value);
         todoList.nuevoTodo(nuevoTodo);
         //? todoList -> nuevoTodo [por referencia...]
+        // console.log(todoList);
 
         //? Llamamos al método crearTodoHtml de la faf (↑) para agregarlo al HTML, pasándole el nuevoTodo:
         crearTodoHtml(nuevoTodo);
@@ -45,4 +47,35 @@ txtInput.addEventListener('keyup', (event) => {
         //? Limpiar el input:
         txtInput.value = '';
     }
-}); 
+});
+
+divTodoList.addEventListener('click', (event) => {
+    const nombreElemento = event.target.localName;
+    //? input, label o button
+    const todoElemento = event.target.parentElement.parentElement;
+    //? Obtenemos el elemento li completo.
+    const todoId = todoElemento.getAttribute('data-id');
+    //? Obtenemos el elemento id
+
+    //? Procedimiento: eliminar del arreglo tarea comletada:
+    if (nombreElemento.includes('input')) {
+        //? haciendo click en el check:
+        todoList.marcarCompletado(todoId);
+
+        //? Eliminar el elemento HTML:
+        todoElemento.classList.toggle('completed');
+
+    } else if (nombreElemento.includes('button')) {
+        //? Eliminar o borrara el todo:
+
+        todoList.eliminarTodo(todoId);
+        //? Elimina del arreglo.
+
+        divTodoList.removeChild(todoElemento);
+        //? ELimina del HTML.
+
+    }
+
+    console.log(todoList);
+
+});
