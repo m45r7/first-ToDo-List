@@ -7,7 +7,7 @@ import { todoList } from "../index.js";
 //? Referencias al HTML:
 const divTodoList = document.querySelector('.todo-list');
 const txtInput = document.querySelector('.new-todo');
-// const btnBorrarCompletados = querySelector('.clear-completed');
+const btnBorrarCompletados = document.querySelector('.clear-completed');
 
 export const crearTodoHtml = (todo) => {
     const htmlTodo = `
@@ -76,6 +76,26 @@ divTodoList.addEventListener('click', (event) => {
 
     }
 
-    console.log(todoList);
+    // console.log(todoList);
 
+});
+
+btnBorrarCompletados.addEventListener('click', () => {
+    todoList.eliminarCompletados();
+    //? Usa método eliminarCompletados() ->  todo-list.class.js
+
+    for (let i = divTodoList.children.length - 1; i >= 0; i--) {
+        //? Recorrer de atrás hacia adelante.
+
+        const elemento = divTodoList.children[i];
+        // console.log(elemento);
+
+        if (elemento.classList.contains('completed')) {
+            //? Si cintiene la clase completed.
+
+            divTodoList.removeChild(elemento);
+            //? Elimina el elemento.
+        }
+    }
+    // console.log(todoList);
 });
