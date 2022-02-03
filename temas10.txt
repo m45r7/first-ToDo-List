@@ -1,0 +1,23 @@
+Temas de la sección 10:
+
+En esta sección tocaremos los siguientes temas:
+
+    - Webpack
+
+    - Uso de clases
+
+    - Uso del LocalStorage y SessionStorage
+
+    - Importaciones
+
+    - Módulos
+
+    - Lógica para el manejo de todos
+
+    - Despliegues
+
+    - Arreglos
+
+    - Más...
+	
+Esta sección aplicaremos lo que aprendimos en Webpack para crear una aplicación que podamos utilizar, desplegar y probar en múltiples navegadores sin importar que usemos características de la última versión de JavaScript.
