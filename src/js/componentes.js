@@ -2,12 +2,13 @@
 
 import { Todo } from "../classes";
 import { todoList } from "../index.js";
-//? import const todoList = new TodoList(); desde index.js (raíz)
 
 //? Referencias al HTML:
 const divTodoList = document.querySelector('.todo-list');
 const txtInput = document.querySelector('.new-todo');
 const btnBorrarCompletados = document.querySelector('.clear-completed');
+const ulFiltros = document.querySelector('.filters');
+const ancorFiltros = document.querySelectorAll('.filtro');
 
 export const crearTodoHtml = (todo) => {
     const htmlTodo = `
@@ -99,3 +100,43 @@ btnBorrarCompletados.addEventListener('click', () => {
     }
     // console.log(todoList);
 });
+
+ulFiltros.addEventListener('click', (event) => {
+    // console.log(event.target.text);
+    const filtro = event.target.text;
+    if (!filtro) { return; }
+
+    /**
+     *? Subsana error del botón Todo - > queda seleccionado
+     *? Barremos los <a></a> eliminando la clase selected */
+    ancorFiltros.forEach(elem => elem.classList.remove('selected'));
+    // console.log(event.target);
+    event.target.classList.add('selected');
+
+    /**
+     *? Para realizar la selección, usaremos desde el CSS la
+     *? propiedad .hidden, aplicandola o no según el estado
+     *? Luego recorremos en un for los elementos que tenemo 
+     *? en nuestro divTodoList*/
+    for (const elemento of divTodoList.children) {
+
+        //? Quitar la clase hidden al hacer click:
+        elemento.classList.remove('hidden');
+        //? ¿lemento contiene la clase completed?
+        const completado = elemento.classList.contains('completed');
+
+        switch (filtro) {
+            case 'Pendientes':
+                if (completado) {
+                    elemento.classList.add('hidden');
+                }
+                break;
+
+            case 'Completados':
+                if (!completado) {
+                    elemento.classList.add('hidden');
+                }
+                break;
+        }
+    }
+})

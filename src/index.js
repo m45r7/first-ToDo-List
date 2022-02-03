@@ -5,18 +5,14 @@ import { Todo, TodoList } from './classes';
 import { crearTodoHtml } from './js/componentes';
 
 export const todoList = new TodoList();
-//? contiene TodoList() 
-//? exporta const todoList (hacia componentes)
+//? contiene TodoList() y exporta todoList (hacia componentes)
 
-const tarea = new Todo('Aprender JavaScript!!');
-todoList.nuevoTodo(tarea);
-//? usa constante todoList para instanciar un Todo
-//? nuevoTodo desde Class TodoList
+todoList.todos.forEach(todo => crearTodoHtml(todo));
+//? Optimización del código (opcional):
+//! todoList.todos.forEach(crearTodoHtml);
+/**
+ *? Esto funcionará bien si es solo un argumento el que se requiere,
+ *? de lo contrario, si el forEach retornara más de un argumento, se
+ *? debe hacer de la forma anterior: */
 
-// tarea.completado = true;
-
-console.log(todoList);
-
-crearTodoHtml(tarea);
-//? Usa: crearHTML desde Ccomponentes
-//? Usa: tarea desde todo.class.js
+console.log('Todos:', todoList.todos);
