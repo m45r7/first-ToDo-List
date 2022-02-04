@@ -107,7 +107,7 @@ ulFiltros.addEventListener('click', (event) => {
     if (!filtro) { return; }
 
     /**
-     *? Subsana error del botón Todo - > queda seleccionado
+     *? Subsana error del botón Todo -> queda seleccionado
      *? Barremos los <a></a> eliminando la clase selected */
     ancorFiltros.forEach(elem => elem.classList.remove('selected'));
     // console.log(event.target);
